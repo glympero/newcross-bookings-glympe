@@ -1,32 +1,24 @@
-import React from 'react'
-import { Field, reduxForm } from 'redux-form'
-import AppBar from 'material-ui/AppBar'
-import { Card, CardTitle, CardText } from 'material-ui/Card'
-import Divider from 'material-ui/Divider'
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
+import AppBar from 'material-ui/AppBar';
+import { Card, CardTitle, CardText } from 'material-ui/Card';
+import Divider from 'material-ui/Divider';
 
-import { TextField, RadioButtonGroup } from 'redux-form-material-ui'
-import RaisedButton from 'material-ui/RaisedButton'
-import { RadioButton } from 'material-ui/RadioButton'
-import '../styles.css'
-import validate from './validate'
+import { TextField, RadioButtonGroup } from 'redux-form-material-ui';
+import RaisedButton from 'material-ui/RaisedButton';
+import { RadioButton } from 'material-ui/RadioButton';
+import '../styles.css';
+import validate from './validate';
 
 const renderError = ({ meta: { touched, error } }) =>
-  touched && error ? <span>{error}</span> : false
+  touched && error ? <span>{error}</span> : false;
 
 const WizardFormThirdPage = props => {
-  const { handleSubmit, pristine, previousPage, submitting } = props
+  const { handleSubmit, pristine, previousPage, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
       <AppBar title="Package Details" showMenuIconButton={false} />
-      <Card
-        style={{
-          marginLeft: 30,
-          marginRight: 30,
-          marginBottom: 30,
-          marginTop: 30,
-          flex: 1
-        }}
-      >
+      <Card className="card-left">
         <CardTitle subtitle="Address" />
         <CardText>
           <Field
@@ -52,15 +44,7 @@ const WizardFormThirdPage = props => {
           <br />
         </CardText>
       </Card>
-      <Card
-        style={{
-          marginLeft: 30,
-          marginRight: 30,
-          marginBottom: 30,
-          marginTop: 30,
-          flex: 1
-        }}
-      >
+      <Card className="card-left">
         <CardTitle subtitle="Access Instructions" />
         <CardText>
           <Field
@@ -73,15 +57,7 @@ const WizardFormThirdPage = props => {
           />
         </CardText>
       </Card>
-      <Card
-        style={{
-          marginLeft: 30,
-          marginRight: 30,
-          marginBottom: 30,
-          marginTop: 30,
-          flex: 1
-        }}
-      >
+      <Card className="card-left">
         <CardTitle subtitle="Uniform Details" />
         <CardText>
           <label className="labels">IS A UNIFORM REQUIRED?</label>
@@ -99,16 +75,8 @@ const WizardFormThirdPage = props => {
         </CardText>
       </Card>
       <Divider inset={false} />
-      <div style={{ display: 'flex' }}>
-        <div
-          style={{
-            display: 'flex',
-            marginLeft: 30,
-
-            marginBottom: 30,
-            marginTop: 30
-          }}
-        >
+      <div className="card-container">
+        <div className="button-pad">
           <RaisedButton
             type="button"
             onClick={previousPage}
@@ -116,15 +84,7 @@ const WizardFormThirdPage = props => {
             primary={true}
           />
         </div>
-        <div
-          style={{
-            display: 'flex',
-            marginLeft: 30,
-
-            marginBottom: 30,
-            marginTop: 30
-          }}
-        >
+        <div className="button-pad">
           <RaisedButton
             type="submit"
             disabled={pristine || submitting}
@@ -134,11 +94,11 @@ const WizardFormThirdPage = props => {
         </div>
       </div>
     </form>
-  )
-}
+  );
+};
 export default reduxForm({
   form: 'wizard', //Form name is same
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
   validate
-})(WizardFormThirdPage)
+})(WizardFormThirdPage);

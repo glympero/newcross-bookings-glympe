@@ -1,26 +1,30 @@
-import React from 'react'
-import { Field, FieldArray, reduxForm } from 'redux-form'
-import AppBar from 'material-ui/AppBar'
-import { Card, CardTitle, CardText, CardActions } from 'material-ui/Card'
-import SelectInputAsync from './SelectInputAsync'
-import { TextField, RadioButtonGroup, DatePicker } from 'redux-form-material-ui'
-import RaisedButton from 'material-ui/RaisedButton'
+import React from 'react';
+import { Field, FieldArray, reduxForm } from 'redux-form';
+import AppBar from 'material-ui/AppBar';
+import { Card, CardTitle, CardText, CardActions } from 'material-ui/Card';
+import SelectInputAsync from './SelectInputAsync';
+import {
+  TextField,
+  RadioButtonGroup,
+  DatePicker
+} from 'redux-form-material-ui';
+import RaisedButton from 'material-ui/RaisedButton';
 
-import validate from './validate'
-import moment from 'moment'
-import momentLocaliser from 'react-widgets/lib/localizers/moment'
-import Divider from 'material-ui/Divider'
-import { RadioButton } from 'material-ui/RadioButton'
+import validate from './validate';
+import moment from 'moment';
+import momentLocaliser from 'react-widgets/lib/localizers/moment';
+import Divider from 'material-ui/Divider';
+import { RadioButton } from 'material-ui/RadioButton';
 
-import { List, ListItem } from 'material-ui/List'
-import IconButton from 'material-ui/IconButton'
+import { List, ListItem } from 'material-ui/List';
+import IconButton from 'material-ui/IconButton';
 
-import '../styles.css'
+import '../styles.css';
 
-momentLocaliser(moment)
+momentLocaliser(moment);
 
 const renderError = ({ meta: { touched, error } }) =>
-  touched && error ? <span>{error}</span> : false
+  touched && error ? <span>{error}</span> : false;
 
 const renderAdditionalSkills = ({ fields, meta: { error } }) => (
   <List>
@@ -49,23 +53,15 @@ const renderAdditionalSkills = ({ fields, meta: { error } }) => (
     ))}
     {error && <ListItem className="error">{error}</ListItem>}
   </List>
-)
+);
 
 const WizardFormFirstPage = props => {
-  const { handleSubmit } = props
+  const { handleSubmit } = props;
   return (
     <form onSubmit={handleSubmit}>
       <AppBar title="General Information" showMenuIconButton={false} />
-      <div style={{ display: 'flex' }}>
-        <Card
-          style={{
-            marginLeft: 30,
-            marginRight: 30,
-            marginBottom: 30,
-            marginTop: 30,
-            flex: 1
-          }}
-        >
+      <div className="card-container">
+        <Card className="card-left">
           <CardTitle subtitle="Client Summary" />
           <CardText>
             <Field
@@ -79,16 +75,9 @@ const WizardFormFirstPage = props => {
           </CardText>
         </Card>
 
-        <Card
-          style={{
-            marginRight: 30,
-            marginBottom: 30,
-            marginTop: 30,
-            flex: 1
-          }}
-        >
+        <Card className="card-right">
           <CardTitle subtitle="Duration of Package" />
-          <div style={{ display: 'flex' }}>
+          <div className="card-container">
             <CardText>
               <label className="labels">Start Date</label>
               <Field
@@ -114,16 +103,8 @@ const WizardFormFirstPage = props => {
         </Card>
       </div>
 
-      <div style={{ display: 'flex' }}>
-        <Card
-          style={{
-            marginLeft: 30,
-            marginRight: 30,
-            marginBottom: 30,
-            marginTop: 30,
-            flex: 1
-          }}
-        >
+      <div className="card-container">
+        <Card className="card-left">
           <CardTitle subtitle="Skills and Competencies Required" />
           <CardText>
             <Field
@@ -142,14 +123,7 @@ const WizardFormFirstPage = props => {
             />
           </CardActions>
         </Card>
-        <Card
-          style={{
-            marginRight: 30,
-            marginBottom: 30,
-            marginTop: 30,
-            flex: 1
-          }}
-        >
+        <Card className="card-right">
           <CardTitle subtitle="Staff Gender Preferences" />
           <CardText>
             <Field
@@ -180,24 +154,16 @@ const WizardFormFirstPage = props => {
         </Card>
       </div>
       <Divider inset={false} />
-      <div
-        style={{
-          display: 'flex',
-          marginLeft: 30,
-
-          marginBottom: 30,
-          marginTop: 30
-        }}
-      >
+      <div className="button-pad">
         <RaisedButton type="submit" primary={true} label="Next" />
       </div>
     </form>
-  )
-}
+  );
+};
 
 export default reduxForm({
   form: 'wizard', // <------ same form name
   destroyOnUnmount: false, // <------ preserve form data
   forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
   validate
-})(WizardFormFirstPage)
+})(WizardFormFirstPage);
